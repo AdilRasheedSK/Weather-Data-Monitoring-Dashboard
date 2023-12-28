@@ -1,0 +1,53 @@
+import csv
+from members.models import Member
+
+def run(file_path):
+
+    count = 1
+
+    with open(file_path, 'r') as file:
+        read_file = csv.reader(file)
+
+        # Skip the header row
+        next(read_file, None)
+
+        for record in read_file:
+            if len(record) > 0:
+                Member.objects.create(
+                    St_ID=record[0],
+                    St_Name=record[1],
+                    Lat=record[2],
+                    Long=record[3],
+                    Alt=record[4],
+                    Date=record[5],
+                    Time=record[6],
+                    Battery=record[7],
+                    GPS_Lock=record[8],
+                    Signal=record[9],
+                    Type=record[10],
+                    Params=record[11],
+                    Rain_QC=record[12],
+                    Rain_Hourly=record[13],
+                    Rain_Daily=record[14],
+                    AT_QC=record[15],
+                    AT=record[16],
+                    AT_Min=record[17],
+                    AT_Max=record[18],
+                    AT_Day_MinMax=record[19],
+                    RH_QC=record[20],
+                    RH=record[21],
+                    RH_Min=record[22],
+                    RH_Max=record[23],
+                    RH_Day_MinMax=record[24],
+                    WD_10M_QC=record[25],
+                    WD_10M=record[26],
+                    WS_10M_QC=record[27],
+                    WS_10M_1m=record[28],
+                    WS_10M_3m=record[29],
+                    WS_10M_10m=record[30],
+                    WS_10M_Hrly=record[31],
+                    WS_10M_Day_Max=record[32],
+                    ATP_QC=record[33],
+                    Pressure=record[34]
+                )
+            count = count + 1
